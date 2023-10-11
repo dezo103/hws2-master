@@ -3,6 +3,7 @@ import s from './App.module.css'
 import HW1 from '../s2-homeworks/hw01/HW1'
 import HW13 from "../s2-homeworks/hw13/HW13";
 import HW5 from "../s2-homeworks/hw05/HW5";
+import HW14 from "../s2-homeworks/hw14/HW14";
 
 function App() {
     return (
@@ -15,7 +16,8 @@ function App() {
 
             {/*при выполнении дз 5 и более - закомментировать здесь дз 1-4, так как они есть внутри дз 5*/}
             <HW5/>
-            <HW13/>
+            {/*<HW13/>*/}
+            {/*<HW14/>*/}
         </div>
     )
 }
