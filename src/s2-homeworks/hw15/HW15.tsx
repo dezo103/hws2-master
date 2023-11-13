@@ -7,7 +7,7 @@ import {useSearchParams} from 'react-router-dom'
 import SuperSort from './common/c10-SuperSort/SuperSort'
 
 /*
-* 1 - дописать SuperPagination
+* 1 - дописать SuperPagination  -  done
 * 2 - дописать SuperSort
 * 3 - проверить pureChange тестами
 * 3 - дописать sendQuery, onChangePagination, onChangeSort в HW15
@@ -52,35 +52,55 @@ const HW15 = () => {
         getTechs(params)
             .then((res) => {
                 // делает студент
-
+                // console.log(res?.data, 'res')
                 // сохранить пришедшие данные
-
-                //
+                res?.data && setTechs(res.data.techs)
+               res?.data && setTotalCount(res.data.totalCount)
+                setLoading(false)
             })
     }
 
     const onChangePagination = (newPage: number, newCount: number) => {
         // делает студент
-
         // setPage(
         // setCount(
 
+        // sendQuery({page, count})  // везде отправляются предыдущие значения
+        //     console.log(newPage, 'newPage')
+        //     console.log(newCount, 'newCount')
+            setCount(newCount)
+            setPage(newPage)
+            sendQuery({page:newPage, count:newCount})
         // sendQuery(
         // setSearchParams(
+            setSearchParams((prev: any) => {
+                prev.set('page', newPage.toString())
+                prev.set('count', newCount.toString())
+                return prev
+            })
 
         //
     }
 
     const onChangeSort = (newSort: string) => {
         // делает студент
+        console.log(newSort, 'newSort')
+        // newSort = то, что возвращает pureChange
 
+        setSort(newSort)
+        // setSort('down')
         // setSort(
         // setPage(1) // при сортировке сбрасывать на 1 страницу
-
+        setPage(1)
         // sendQuery(
         // setSearchParams(
-
+        sendQuery({page, count})
         //
+        setSearchParams((prev: any) => {
+            prev.set('page', page.toString())
+            prev.set('count', count.toString())
+            return prev
+        })
     }
 
     useEffect(() => {

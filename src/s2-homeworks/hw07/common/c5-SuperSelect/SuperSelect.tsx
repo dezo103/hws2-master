@@ -37,6 +37,15 @@ const SuperSelect: React.FC<SuperSelectPropsType> = ({
 
     const onChangeCallback = (e: ChangeEvent<HTMLSelectElement>) => {
         // делают студенты
+        if (onChangeOption) {
+            e.currentTarget.value && onChangeOption(e.currentTarget.value)
+            // console.log(e.currentTarget.value)
+        } else {
+            if (onChange) {
+                onChange(e)
+            }
+        }
+
     }
 
     const finalSelectClassName = s.select + (className ? ' ' + className : '')
